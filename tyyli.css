@@ -1,0 +1,163 @@
+/* =========================================================
+   CIRCLING.FI – ULKOASU
+   Värit ja fontit ovat heti alla. Muuta arvoja tekstieditorilla.
+   Värikoodin saa esim. hakemalla "color picker".
+   ========================================================= */
+
+:root{
+  --turkoosi:        #3e8aa3;   /* pääväri (murrettu sininen): napit, logo, korostukset */
+  --turkoosi-tumma:  #255a6b;   /* otsikot ja linkit */
+  --turkoosi-vaalea: #ebf2f4;   /* vaaleat taustalaatikot */
+  --turkoosi-reuna:  #cadde3;   /* ohuet reunaviivat */
+  --vastavari:       #ea735f;   /* vastaväri (lohenpunainen): pienet korostukset */
+  --vastavari-vaalea:#fde3dd;   /* vastavärin vaalea sävy */
+  --teksti:          #1b3440;   /* leipäteksti */
+  --harmaa:          #5c7480;   /* pienempi, haaleampi teksti */
+  --tausta:          #ffffff;   /* sivun tausta */
+
+  --otsikkofontti: "Fraunces", Georgia, serif;
+  --logofontti:    "Montserrat", sans-serif;
+  --tekstifontti:  "Nunito Sans", system-ui, sans-serif;
+  --tekstikoko:    17px;
+  --pyoristys:     16px;        /* laatikoiden kulmien pyöreys */
+  --leveys:        980px;       /* sisällön maksimileveys */
+}
+
+/* ---------- Perusasiat ---------- */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip}
+body{font-family:var(--tekstifontti);color:var(--teksti);background:var(--tausta);line-height:1.65;font-size:var(--tekstikoko)}
+h1,h2,h3{font-family:var(--otsikkofontti);font-weight:600;line-height:1.2;color:var(--turkoosi-tumma)}
+h1{font-size:clamp(2.1rem,5vw,3.2rem);margin-bottom:18px}
+h2{font-size:1.8rem;margin:48px 0 16px}
+h3{font-size:1.25rem;margin:28px 0 8px}
+.sivu > h1:first-child,.sivu > h2:first-child,.sivu > .koriste + h1{margin-top:0}
+p{margin-bottom:16px}
+a{color:var(--turkoosi-tumma)}
+img{max-width:100%;border-radius:20px;display:block;margin:20px 0}
+.wrap{max-width:var(--leveys);margin:0 auto;padding:0 22px}
+
+/* ---------- Ylapalkki ja valikko ---------- */
+header{position:sticky;top:0;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--turkoosi-reuna);z-index:10}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;height:66px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--logofontti);font-size:1.25rem;letter-spacing:.02em;color:var(--turkoosi);font-weight:700}
+.slogan{font-family:var(--logofontti);font-weight:600;text-transform:uppercase;letter-spacing:.12em;font-size:.85rem;color:var(--turkoosi);margin-bottom:10px}
+.logo svg{width:34px;height:34px}
+nav{display:flex;gap:4px}
+nav a{text-decoration:none;color:var(--harmaa);font-weight:600;padding:8px 12px;border-radius:999px;font-size:.95rem;transition:.2s}
+nav a:hover{color:var(--turkoosi-tumma);background:var(--turkoosi-vaalea)}
+nav a.on{color:#fff;background:var(--turkoosi)}
+.menu-btn{display:none;background:none;border:0;font-size:1.6rem;color:var(--turkoosi-tumma);cursor:pointer}
+
+/* ---------- Sivut ---------- */
+.sivu{display:none;padding:56px 0 72px;animation:fade .35s ease}
+.sivu.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.sivu > p,.sivu > h3,.sivu > ul{max-width:680px}
+
+/* ---------- Napit ---------- */
+.nappi,.nappi2{display:inline-block;text-decoration:none;font-weight:700;padding:12px 24px;border-radius:999px;transition:.2s;margin:4px 8px 4px 0}
+.nappi{background:var(--turkoosi);color:#fff}
+.nappi:hover{background:var(--turkoosi-tumma)}
+.nappi2{color:var(--turkoosi-tumma);border:2px solid var(--vastavari)}
+.nappi2:hover{background:var(--vastavari-vaalea)}
+
+/* ---------- Kansikuva (sivun ensimmäinen kuva) ---------- */
+.sivu > p:first-child:has(> img){width:100vw;margin:-8px 0 56px calc(50% - 50vw);overflow:visible}
+.sivu > p:first-child > img{
+  width:100vw;max-width:none;margin:0;border-radius:0;
+  aspect-ratio:16/7;               /* matalampi = enemmän leikattu ylä- ja alalaidasta */
+  object-fit:cover;object-position:center 62%;
+  transform:rotate(0deg);          /* kallistus asteina, 0 = suora */
+  box-shadow:0 12px 30px rgba(27,52,64,.12)}
+
+/* ---------- Muotokuvat: ![Nimi](kuva.jpg "muotokuva") ---------- */
+img[title="muotokuva"]{width:140px;height:140px;object-fit:cover;border-radius:50%;margin:8px 0 12px;border:3px solid var(--turkoosi-vaalea)}
+
+/* ---------- Koristekuva ---------- */
+.koriste .piste{fill:var(--vastavari)}
+.koriste{float:right;width:min(360px,40%);margin:0 0 20px 32px}
+
+/* ---------- Illat ---------- */
+.illat{display:grid;gap:14px;margin:10px 0 18px;clear:both}
+.ilta{display:grid;grid-template-columns:86px 1fr auto;gap:18px;align-items:center;border:1px solid var(--turkoosi-reuna);border-radius:var(--pyoristys);padding:16px 18px;transition:.2s;text-decoration:none;color:inherit}
+.ilta:hover{border-color:var(--turkoosi);box-shadow:0 6px 20px rgba(62,138,163,.14)}
+.pvm{background:var(--vastavari);border-radius:12px;text-align:center;padding:8px 4px}
+.pvm .d,.pvm .m{color:#fff !important}
+.pvm .d{font-family:var(--otsikkofontti);font-size:1.7rem;color:var(--turkoosi-tumma);line-height:1}
+.pvm .m{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--harmaa);font-weight:700}
+.ilta h3{font-size:1.1rem;margin:0 0 2px}
+.ilta .meta{color:var(--harmaa);font-size:.93rem}
+.tila{font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--vastavari);color:#fff;white-space:nowrap}
+.ilta.avoin{border-color:var(--turkoosi);background:var(--turkoosi-vaalea)}
+.ilta.avoin .pvm,.ilta.avoin .tila{background:var(--turkoosi)}
+.ilta.joulu{border-color:#c62f3a;background:#fbe4e6}
+.ilta.joulu .pvm,.ilta.joulu .tila{background:#c62f3a}
+.tila.taynna{background:#f2f2f2;color:#888}
+.ei-iltoja{color:var(--harmaa);font-style:italic}
+
+/* ---------- Ilmoittautumislomake ---------- */
+button.ilta{width:100%;font:inherit;text-align:left;cursor:pointer;background:#fff}
+button.ilta[disabled]{cursor:default;opacity:.6}
+.lomake{display:none;margin:-6px 0 8px;padding:22px;border:1px solid var(--turkoosi-reuna);border-top:0;border-radius:0 0 var(--pyoristys) var(--pyoristys);background:#fff}
+.lomake.auki{display:block}
+.lomake label{display:block;font-weight:600;font-size:.92rem;margin:12px 0 4px}
+.lomake input,.lomake textarea{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--turkoosi-reuna);border-radius:10px;background:#fff;color:var(--teksti)}
+.lomake input:focus,.lomake textarea:focus{outline:2px solid var(--turkoosi);border-color:transparent}
+.lomake textarea{min-height:80px;resize:vertical}
+.lomake .pieni{font-size:.82rem;color:var(--harmaa);margin-top:10px}
+.lomake button[type=submit]{margin-top:16px;border:0;cursor:pointer;font:inherit}
+.lomake button[type=submit][disabled]{opacity:.6;cursor:wait}
+.lomake label.valinta{display:flex;align-items:center;gap:10px;font-weight:400;margin-top:14px;cursor:pointer}
+.lomake label.valinta input{width:18px;height:18px;margin:0;accent-color:var(--turkoosi)}
+.ansa{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.viesti{padding:14px 16px;border-radius:12px;margin-top:14px;font-weight:600}
+.viesti.ok{background:var(--turkoosi-vaalea);color:var(--turkoosi-tumma)}
+.viesti.virhe{background:#fbe4e6;color:#9b1c27}
+
+/* ---------- Linkit-sivun kortit ---------- */
+#sivu-linkit ul{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:none;margin-top:24px}
+#sivu-linkit li{border:1px solid var(--turkoosi-reuna);border-radius:var(--pyoristys);padding:18px 20px;color:var(--harmaa);font-size:.93rem;transition:.2s}
+#sivu-linkit li:hover{border-color:var(--turkoosi);background:var(--turkoosi-vaalea)}
+#sivu-linkit li{position:relative}
+#sivu-linkit li a:first-child{display:block;font-weight:700;font-size:1.05rem;text-decoration:none}
+#sivu-linkit li a:first-child::after{content:"";position:absolute;inset:0}  /* koko kortti klikattava */
+#sivu-linkit li a:not(:first-child){position:relative;z-index:1}
+
+/* ---------- Videot-sivun kortit ---------- */
+ul.videot{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;max-width:none;margin:24px 0}
+.video{border-radius:var(--pyoristys);overflow:hidden;border:1px solid var(--turkoosi-reuna);transition:.2s}
+.video:hover{border-color:var(--turkoosi);box-shadow:0 6px 20px rgba(62,138,163,.14)}
+.video a{display:block;text-decoration:none;color:var(--teksti)}
+.peukalo{display:grid;place-items:center;aspect-ratio:16/9;background:var(--turkoosi-vaalea) center/cover}
+.play{width:48px;height:48px;border-radius:50%;background:var(--vastavari);color:#fff;display:grid;place-items:center;font-size:1.1rem;padding-left:3px;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.upotus{aspect-ratio:16/9}
+.upotus iframe{width:100%;height:100%;border:0;display:block}
+.vnimi{display:block;padding:12px 14px;font-weight:600;font-size:.92rem;line-height:1.4}
+
+/* ---------- Palautekortit ---------- */
+ul.palautteet{list-style:none;columns:2 300px;column-gap:18px;max-width:none;margin:20px 0}
+ul.palautteet li{break-inside:avoid;margin:0 0 18px;padding:20px 22px;border-radius:var(--pyoristys);background:var(--turkoosi-vaalea);font-style:italic;color:var(--teksti);border-left:4px solid var(--vastavari)}
+
+/* ---------- Alatunniste ---------- */
+footer{border-top:1px solid var(--turkoosi-reuna);padding:28px 0;color:var(--harmaa);font-size:.9rem}
+footer p{margin:0}
+
+/* ---------- Puhelin ---------- */
+@media (max-width:1000px){nav a{padding:8px 9px;font-size:.9rem}}
+@media (max-width:760px){
+  .menu-btn{display:block}
+  nav{position:absolute;top:66px;left:0;right:0;background:#fff;flex-direction:column;padding:10px 22px 18px;border-bottom:1px solid var(--turkoosi-reuna);display:none}
+  nav.open{display:flex}
+  nav a{padding:12px 14px}
+  .koriste .piste{fill:var(--vastavari)}
+.koriste{float:none;width:240px;margin:0 auto 20px}
+  .ilta{grid-template-columns:70px 1fr}
+  .ilta .tila{grid-column:2;justify-self:start}
+  #sivu-linkit ul{grid-template-columns:1fr}
+  .sivu{padding:36px 0 56px}
+  .sivu > p:first-child > img{aspect-ratio:16/10}
+  .slogan{font-size:.9rem;letter-spacing:.04em}
+  h1{font-size:2.2rem}
+  /* puhelimella sivu pienentää sloganin ja otsikon juuri niin paljon, että ne mahtuvat yhdelle riville */
+}
