@@ -45,7 +45,7 @@ h3{font-size:19px;font-weight:500}
 /* home */
 .hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,56px);align-items:end}
 .hero .pic{aspect-ratio:4/3;background:var(--panel);overflow:hidden}
-.hero .pic img{width:100%;height:100%;object-fit:cover}
+.hero .pic img{width:100%;height:100%;object-fit:contain}
 .hero p.lead{font-size:clamp(17px,1.6vw,20px);max-width:34ch}
 .hero .sub{color:var(--acc);margin:14px 0 18px;font-size:17px}
 .card{border-top:1px solid var(--ink);padding-top:14px;margin-top:28px;text-decoration:none;display:block}
@@ -57,6 +57,7 @@ h3{font-size:19px;font-weight:500}
 /* gallery */
 .ghead{display:flex;align-items:baseline;gap:16px;margin-bottom:28px}
 .grid{columns:3 260px;column-gap:28px}
+.grid.s{columns:4 190px}.grid.l{columns:2 360px;column-gap:40px}
 .work{break-inside:avoid;margin:0 0 32px;cursor:zoom-in}
 .work .ph{background:var(--panel);overflow:hidden}
 .work img{width:100%;height:auto;transition:opacity .4s}
@@ -94,7 +95,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--mute);fo
   .top{padding-block:12px}
   nav{order:3;width:100%;flex-wrap:nowrap;overflow-x:auto;gap:18px;scrollbar-width:none}
   nav a{flex:none}
-  .grid{columns:2;column-gap:14px}
+  .grid,.grid.s{columns:2;column-gap:14px}.grid.l{columns:1}
   .work figcaption{font-size:14px}
   .hero{grid-template-columns:1fr}.hero .pic{order:-1}
   .about{grid-template-columns:1fr}
@@ -279,7 +280,7 @@ function vWorks(tab){
   const meta = r => [r.Vuosi, tr(r,'Tekniikka'), r.Koko].filter(Boolean).map(esc).join(' · ');
   if (!LIST.length) return `<section class="band"><h1>${esc(menuName(tab))}</h1><p class="state">${t('empty')}</p></section>`;
   return `<section class="band"><div class="ghead"><h1>${esc(menuName(tab))}</h1><span class="mute">${LIST.length}</span></div>
-  <div class="grid">${LIST.map((r, i) => {
+  <div class="grid ${({pieni:'s', suuri:'l'})[set('Gallerian koko').toLowerCase()] || ''}">${LIST.map((r, i) => {
     const im = img(r.Kuva, 900);
     return `<figure class="work" data-i="${i}" tabindex="0">
       <div class="ph">${im ? `<img src="${esc(im)}" alt="${esc(tr(r,'Nimi'))}" loading="lazy">` : `<div class="noimg">${t('noimg')}</div>`}</div>
