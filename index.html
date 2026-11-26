@@ -14,11 +14,8 @@
    PICTURE: the works themselves, large, uncropped; one banner sculpture on home.
    COLOUR and TYPE: plaster white, near-black ink, bronze accent; Jost light, name letter-spaced like the old logo.
    LAYOUT: name + menu header, wide banner beside intro, masonry gallery, hanging-date exhibition list. */
-:root{color-scheme:light dark;
-  --bg:light-dark(#f2f0ec,#141312);--panel:light-dark(#e7e4de,#1e1c1a);
-  --ink:light-dark(#1d1b19,#ece8e2);--mute:light-dark(#6c665e,#a39c92);
-  --line:light-dark(#d6d1c9,#34312d);--acc:light-dark(#8a5a2b,#c99a66)}
-:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+:root{color-scheme:light;
+  --bg:#f2f0ec;--panel:#e7e4de;--ink:#1d1b19;--mute:#6c665e;--line:#d6d1c9;--acc:#8a5a2b}
 *{box-sizing:border-box;min-width:0}
 html{scroll-padding-top:90px}
 body{margin:0;background:var(--bg);color:var(--ink);font:300 17px/1.6 Jost,system-ui,sans-serif;overflow-x:clip}
@@ -258,7 +255,7 @@ function exCard(r, label){
 function vHome(){
   const ex = exhibitions(), now = ex.filter(r => status(r) === 'now'),
         up = ex.filter(r => status(r) === 'up').sort((a,b) => a.Alkaa - b.Alkaa);
-  const banner = img(set('Bannerikuva'), 1800);
+  const banner = IMG.__etusivu ? `https://lh3.googleusercontent.com/d/${IMG.__etusivu}=w1800` : img(set('Bannerikuva'), 1800);
   const news = (D.Uutiset||[]).filter(r => shown(r, 'Otsikko')).sort((a,b) => (b['Päivämäärä']||0) - (a['Päivämäärä']||0));
   return `<section class="band hero">
     <div><h1>${esc(set('Nimi') || 'Hannu T. Konttinen')}</h1>
@@ -276,7 +273,10 @@ function vHome(){
 let LIST = [];
 function vWorks(tab){
   const prices = set('Näytä hinnat').toLowerCase() === 'kyllä';
-  LIST = (D[tab]||[]).filter(r => shown(r, 'Nimi') || (r.Kuva && r.Piilota !== true));
+  // Teos piilotetaan, jos sen kuvan tiedostonimeä ei enää löydy kuvakansiosta
+  const imgsOn = Object.keys(IMG).length > 0;
+  const missing = r => { const k = String(r.Kuva || '').trim(); return imgsOn && k && !/^https?:\/\//.test(k) && !IMG[norm(k)]; };
+  LIST = (D[tab]||[]).filter(r => (shown(r, 'Nimi') || (r.Kuva && r.Piilota !== true)) && !missing(r));
   const meta = r => [r.Vuosi, tr(r,'Tekniikka'), r.Koko].filter(Boolean).map(esc).join(' · ');
   if (!LIST.length) return `<section class="band"><h1>${esc(menuName(tab))}</h1><p class="state">${t('empty')}</p></section>`;
   return `<section class="band"><div class="ghead"><h1>${esc(menuName(tab))}</h1><span class="mute">${LIST.length}</span></div>
