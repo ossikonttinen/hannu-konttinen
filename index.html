@@ -1,253 +1,385 @@
 <!DOCTYPE html>
-<html lang="fi">
+<html lang="nb">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>circling.fi – autenttisen yhteyden tila</title>
-<meta name="description" content="Läsnäolon, autenttisuuden ja tietoisen vuorovaikutuksen illat Vallilassa: circling, authentic relating ja kehollisuus. Maanantaisin Galleria Sitruunapuussa.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='16' fill='none' stroke='%233e8aa3' stroke-width='3.2'/%3E%3Ccircle cx='20' cy='20' r='4.2' fill='%233e8aa3'/%3E%3C/svg%3E">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://circling.fi/">
-<meta property="og:title" content="circling.fi – autenttisen yhteyden tila">
-<meta property="og:description" content="Läsnäolon, autenttisuuden ja tietoisen vuorovaikutuksen illat Vallilassa – circling, authentic relating ja kehollisuus.">
-<meta property="og:image" content="https://circling.fi/jakokuva.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<!-- Tekstit: tekstit.md · Ulkoasu: tyyli.css · Tätä tiedostoa ei yleensä tarvitse muokata. -->
+<title>Hannu T. Konttinen</title>
+<meta name="description" content="Hannu T. Konttinen – kuvanveistäjä ja taidemaalari, Bergen. Billedhugger og maler. Sculptor and painter.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="tyyli.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* VOICE: quiet, gallery-like; the work speaks, the page steps back.
+   IDEA: an exhibition catalogue on plaster-white walls.
+   PICTURE: the works themselves, large, uncropped; one banner sculpture on home.
+   COLOUR and TYPE: plaster white, near-black ink, bronze accent; Jost light, name letter-spaced like the old logo.
+   LAYOUT: name + menu header, wide banner beside intro, masonry gallery, hanging-date exhibition list. */
+:root{color-scheme:light dark;
+  --bg:light-dark(#f2f0ec,#141312);--panel:light-dark(#e7e4de,#1e1c1a);
+  --ink:light-dark(#1d1b19,#ece8e2);--mute:light-dark(#6c665e,#a39c92);
+  --line:light-dark(#d6d1c9,#34312d);--acc:light-dark(#8a5a2b,#c99a66)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--ink);font:300 17px/1.6 Jost,system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{max-width:1240px;margin:0 auto;padding:0 max(5vw,16px)}
+header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top{display:flex;flex-wrap:wrap;align-items:center;gap:10px 28px;padding-block:16px}
+.logo{font-weight:400;font-size:clamp(15px,2.2vw,19px);letter-spacing:.32em;text-decoration:none;white-space:nowrap;text-transform:uppercase;margin-right:auto}
+nav{display:flex;flex-wrap:wrap;gap:2px 18px}
+nav a{text-decoration:none;font-size:15px;padding:6px 0;color:var(--mute);border-bottom:1px solid transparent}
+nav a:hover,nav a[aria-current]{color:var(--ink);border-color:var(--acc)}
+.lang{display:flex;gap:2px}
+.lang button{font:inherit;font-size:13px;background:none;border:1px solid transparent;color:var(--mute);padding:6px 8px;min-height:36px;cursor:pointer;border-radius:3px}
+.lang button[aria-pressed=true]{color:var(--ink);border-color:var(--line)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+main{min-height:60vh}
+h1,h2,h3{font-weight:400;line-height:1.1;text-wrap:balance;margin:0}
+h1{font-size:clamp(32px,5vw,52px)}
+h2{font-size:clamp(24px,3vw,32px)}
+h3{font-size:19px;font-weight:500}
+.band{padding:clamp(28px,5vw,64px) 0}
+.mute{color:var(--mute)}
+/* home */
+.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,56px);align-items:end}
+.hero .pic{aspect-ratio:4/3;background:var(--panel);overflow:hidden}
+.hero .pic img{width:100%;height:100%;object-fit:cover}
+.hero p.lead{font-size:clamp(17px,1.6vw,20px);max-width:34ch}
+.hero .sub{color:var(--acc);margin:14px 0 18px;font-size:17px}
+.card{border-top:1px solid var(--ink);padding-top:14px;margin-top:28px;text-decoration:none;display:block}
+.card small{display:block;color:var(--acc);font-size:14px}
+.news{display:grid;gap:36px;max-width:760px}
+.news article{display:grid;grid-template-columns:120px minmax(0,1fr);gap:18px}
+.news time{color:var(--mute);font-size:15px;white-space:nowrap}
+.news img{margin-top:12px;max-height:420px;width:auto}
+/* gallery */
+.ghead{display:flex;align-items:baseline;gap:16px;margin-bottom:28px}
+.grid{columns:3 260px;column-gap:28px}
+.work{break-inside:avoid;margin:0 0 32px;cursor:zoom-in}
+.work .ph{background:var(--panel);overflow:hidden}
+.work img{width:100%;height:auto;transition:opacity .4s}
+.work .noimg{aspect-ratio:4/5;display:grid;place-items:center;color:var(--mute);font-size:14px;padding:16px;text-align:center}
+.work figcaption{padding-top:10px;font-size:15px}
+.work figcaption b{font-weight:500;display:block;font-size:16px}
+.price{color:var(--acc)}
+/* exhibitions */
+.ex{margin-bottom:48px}
+.ex h2{margin-bottom:18px}
+.row{display:grid;grid-template-columns:200px minmax(0,1fr);gap:20px;padding:14px 0;border-top:1px solid var(--line)}
+.row .d{color:var(--mute);font-size:15px}
+.row .tag{font-size:13px;color:var(--acc);margin-left:8px}
+.row p{margin:4px 0 0}
+/* about */
+.about{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(24px,5vw,72px)}
+.about section{margin-bottom:32px}
+.about h2{margin-bottom:10px}
+.contact{background:var(--panel);padding:24px;align-self:start}
+.contact dl{margin:0}.contact dt{color:var(--mute);font-size:14px;margin-top:12px}.contact dd{margin:0}
+.state{padding:80px 0;color:var(--mute)}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--mute);font-size:14px;margin-top:40px}
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:20;background:color-mix(in srgb,var(--bg) 97%,black);display:none;grid-template-rows:minmax(0,1fr) auto;padding:56px max(4vw,12px) 20px}
+.lb.open{display:grid}
+.lb .stage{display:grid;place-items:center;min-height:0}
+.lb img{max-width:100%;max-height:100%;object-fit:contain}
+.lb .info{text-align:center;padding-top:14px;font-size:15px}
+.lb .info b{font-weight:500;font-size:17px}
+.lb button{position:absolute;font:inherit;background:none;border:0;color:var(--ink);width:48px;height:48px;font-size:28px;cursor:pointer;border-radius:50%}
+.lb button:hover{background:var(--panel)}
+.lb .x{top:8px;right:8px}.lb .pv{left:8px;top:50%}.lb .nx{right:8px;top:50%}
+@media (max-width:760px){
+  header{position:static}
+  .top{padding-block:12px}
+  nav{order:3;width:100%;flex-wrap:nowrap;overflow-x:auto;gap:18px;scrollbar-width:none}
+  nav a{flex:none}
+  .grid{columns:2;column-gap:14px}
+  .work figcaption{font-size:14px}
+  .hero{grid-template-columns:1fr}.hero .pic{order:-1}
+  .about{grid-template-columns:1fr}
+  .row{grid-template-columns:1fr;gap:2px}
+  .news article{grid-template-columns:1fr;gap:4px}
+  .lb .pv,.lb .nx{top:auto;bottom:10px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
 </head>
 <body>
-
-<header>
-  <div class="wrap bar">
-    <a class="logo" href="#etusivu">
-      <svg viewBox="0 0 40 40" aria-hidden="true">
-        <circle cx="20" cy="20" r="17" fill="none" stroke="var(--turkoosi)" stroke-width="2.4"/>
-        <circle cx="20" cy="20" r="3.8" fill="var(--turkoosi)"/>
-      </svg>circling.fi</a>
-    <button class="menu-btn" aria-label="Valikko" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
-    <nav></nav>
+<header><div class="wrap top">
+  <a class="logo" href="#" id="logo">Hannu T. Konttinen</a>
+  <nav id="nav" aria-label="Valikko"></nav>
+  <div class="lang" id="lang">
+    <button data-l="no" aria-pressed="false">NO</button>
+    <button data-l="fi" aria-pressed="false">FI</button>
+    <button data-l="en" aria-pressed="false">EN</button>
   </div>
-</header>
-
-<main class="wrap" id="sisalto"></main>
-<footer><div class="wrap" id="alatunniste"></div></footer>
-
+</div></header>
+<main id="main" class="wrap"><p class="state">…</p></main>
+<footer><div class="wrap" id="foot"></div></footer>
+<div class="lb" id="lb" role="dialog" aria-modal="true">
+  <button class="x" aria-label="Sulje">×</button>
+  <button class="pv" aria-label="Edellinen">‹</button>
+  <button class="nx" aria-label="Seuraava">›</button>
+  <div class="stage"><img alt=""></div>
+  <div class="info"></div>
+</div>
 <script>
-const KORISTE = `<svg class="koriste" viewBox="0 0 400 400" aria-hidden="true">
-  <circle cx="200" cy="200" r="150" fill="none" stroke="var(--turkoosi)" stroke-width="13"/>
-  <circle cx="200" cy="200" r="31" fill="var(--turkoosi)"/>
-</svg>`;
-/* Ilmoittautumisjärjestelmän osoite (Apps Script, päättyy /exec) */
-const API = "https://script.google.com/macros/s/AKfycbw_soiWMMAg7gSkyd8rVzcow8D1Kyx5x-6alziVkjKfvEJwHbowkCtbr3uc2hWIStLq8w/exec";
+{
+/* ===== Asetukset: Sheetin tunnus ===== */
+const SHEET_ID = '1gKV4IyeExd1WeibgBH3IHfvaLde4iHgaPe_v4E2iVKg';
+const TABS = ['Asetukset','Valikko','Uutiset','Veistokset','Piirustukset','Maalaukset','Muut','Minusta','Näyttelyt'];
+const WORK_TABS = ['Veistokset','Piirustukset','Maalaukset','Muut'];
 
-const KUUT = ["tammi","helmi","maalis","huhti","touko","kesä","heinä","elo","syys","loka","marras","joulu"];
+const UI = {
+  fi:{now:'Nyt esillä',up:'Tulevat näyttelyt',past:'Aiemmat näyttelyt',next:'Tuleva näyttely',group:'Yhteisnäyttely',
+      contact:'Yhteystiedot',home:'Koti',studio:'Ateljee',phone:'Puhelin',email:'Sähköposti',empty:'Ei vielä sisältöä.',
+      err:'Sisältöä ei voitu ladata. Yritä hetken päästä uudelleen.',close:'Sulje',prev:'Edellinen',next2:'Seuraava',noimg:'Kuva tulossa',news:'Ajankohtaista',more:'Lisätietoja'},
+  no:{now:'Nå',up:'Kommende utstillinger',past:'Tidligere utstillinger',next:'Kommende utstilling',group:'Kollektivutstilling',
+      contact:'Kontakt',home:'Hjem',studio:'Atelier',phone:'Telefon',email:'E-post',empty:'Ikke noe innhold ennå.',
+      err:'Innholdet kunne ikke lastes. Prøv igjen om litt.',close:'Lukk',prev:'Forrige',next2:'Neste',noimg:'Bilde kommer',news:'Aktuelt',more:'Mer informasjon'},
+  en:{now:'Now showing',up:'Upcoming exhibitions',past:'Past exhibitions',next:'Upcoming exhibition',group:'Group exhibition',
+      contact:'Contact',home:'Home',studio:'Studio',phone:'Phone',email:'Email',empty:'Nothing here yet.',
+      err:'The content could not be loaded. Please try again shortly.',close:'Close',prev:'Previous',next2:'Next',noimg:'Image coming',news:'News',more:'More information'}
+};
+const MONTHS = {
+  fi:['tammikuu','helmikuu','maaliskuu','huhtikuu','toukokuu','kesäkuu','heinäkuu','elokuu','syyskuu','lokakuu','marraskuu','joulukuu'],
+  no:['januar','februar','mars','april','mai','juni','juli','august','september','oktober','november','desember'],
+  en:['January','February','March','April','May','June','July','August','September','October','November','December']
+};
 
-const slug = s => s.toLowerCase().replace(/ä/g,"a").replace(/ö/g,"o").replace(/å/g,"a").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
-const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let D = {}, IMG = {}, L = 'en';
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const para = s => String(s||'').split(/\n\s*\n/).map(p => '<p>' + esc(p).replace(/\n/g,'<br>') + '</p>').join('');
+const slug = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+const norm = s => String(s).normalize('NFC').trim().toLowerCase().replace(/\.(jpe?g|png|gif|webp|heic|tiff?)$/,'');
+const t = k => UI[L][k];
 
-function lueIlta(rivi){
-  const [pvm, aika="", otsikko="", paikka="", tila="", linkki=""] = rivi.replace(/^@\s*/,"").split("|").map(s=>s.trim());
-  const [d,m,y] = pvm.split(".").map(Number);
-  return {pvm:new Date(y, m-1, d, 23, 59), d, m, aika, otsikko, paikka, tila, linkki};
+/* ===== Datan lataus (Google Sheets gviz, JSONP) ===== */
+let seq = 0;
+function jsonp(url){
+  return new Promise((res, rej) => {
+    const cb = '__cb' + (++seq), s = document.createElement('script');
+    const tm = setTimeout(() => { cleanup(); rej(new Error('timeout')); }, 15000);
+    function cleanup(){ clearTimeout(tm); delete window[cb]; s.remove(); }
+    window[cb] = d => { cleanup(); res(d); };
+    s.onerror = () => { cleanup(); rej(new Error('load')); };
+    s.src = url.replace('{cb}', cb);
+    document.head.appendChild(s);
+  });
 }
-function iltaKortti(e){
-  const tag = e.linkki ? "a" : "div";
-  const href = e.linkki ? ` href="${esc(e.linkki)}"` : "";
-  const taynna = /täyn/i.test(e.tila) ? " taynna" : "";
-  const avoin = /avoin/i.test(e.otsikko) ? " avoin" : /pikkujoul|joulu/i.test(e.otsikko) ? " joulu" : "";
-  return `<${tag} class="ilta${avoin}"${href}>
-    <div class="pvm"><div class="d">${e.d}</div><div class="m">${KUUT[e.m-1]||""}</div></div>
-    <div><h3>${esc(e.otsikko)}</h3><div class="meta">${esc([e.aika,e.paikka].filter(Boolean).join(" · "))}</div></div>
-    ${e.tila ? `<span class="tila${taynna}">${esc(e.tila)}</span>` : ""}
-  </${tag}>`;
+function cell(v){
+  if (v == null) return '';
+  if (typeof v === 'string'){
+    let m = v.match(/^Date\((\d+),(\d+),(\d+)/);
+    if (m) return new Date(+m[1], +m[2], +m[3]);
+    m = v.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
+    if (m) return new Date(+m[3], +m[2]-1, +m[1]);
+    if (v === 'TRUE') return true; if (v === 'FALSE') return false;
+  }
+  return v;
 }
-function iltaLista(lista, max){
-  // Varalla tekstit.md:n illat; korvataan Sheetin illoilla, kun ne latautuvat
-  const varalla = lista.length ? `<div class="illat">${lista.map(iltaKortti).join("")}</div>`
-                               : `<p class="ei-iltoja">Uusia iltoja tulossa pian.</p>`;
-  return `<div class="illat-api" data-max="${max||""}">${varalla}</div>`;
+function objs(head, rows){
+  return rows.map(r => { const o = {}; head.forEach((h, i) => { if (h) o[h.trim()] = cell(r[i]); }); return o; });
 }
-
-/* ---------- Ilmoittautuminen ---------- */
-const ILLAT = {};
-const pad = n => String(n).padStart(2,"0");
-function ajat(e){
-  const [ah,am] = e.alku.split(/[.:]/), [lh,lm] = (e.loppu || e.alku).split(/[.:]/);
-  const p = `${e.vuosi}${pad(e.kuukausi)}${pad(e.paiva)}`;
-  return {alku:`${p}T${pad(ah)}${pad(am||0)}00`, loppu:`${p}T${pad(lh)}${pad(lm||0)}00`};
+async function loadTab(name){
+  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?headers=1&sheet=${encodeURIComponent(name)}&tqx=responseHandler:{cb}&_=${Date.now()}`;
+  const d = await jsonp(url);
+  if (d.status === 'error') throw new Error(name);
+  const head = d.table.cols.map(c => c.label);
+  return objs(head, d.table.rows.map(r => (r.c || []).map(c => c ? c.v : null)));
 }
-function kalenteriNapit(e){
-  const t = ajat(e);
-  const g = "https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(e.otsikko)+
-    "&dates="+t.alku+"/"+t.loppu+"&ctz=Europe/Helsinki&location="+encodeURIComponent(e.paikka);
-  const es = s => String(s).replace(/([,;\\])/g,"\\$1");
-  const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//circling.fi//FI","BEGIN:VEVENT",
-    "UID:"+e.id+"@circling.fi","DTSTAMP:"+new Date().toISOString().replace(/[-:]/g,"").slice(0,15)+"Z",
-    "DTSTART;TZID=Europe/Helsinki:"+t.alku,"DTEND;TZID=Europe/Helsinki:"+t.loppu,
-    "SUMMARY:"+es(e.otsikko),"LOCATION:"+es(e.paikka),"END:VEVENT","END:VCALENDAR"].join("\r\n");
-  const url = URL.createObjectURL(new Blob([ics],{type:"text/calendar"}));
-  return `<div style="margin-top:12px"><a class="nappi" href="${g}" target="_blank" rel="noopener">Lisää Google-kalenteriin</a>
-    <a class="nappi2" href="${url}" download="circling-ilta.ics">Apple / Outlook</a></div>`;
-}
-function ilmoKortti(e){
-  const luokka = e.tyyppi === "avoin" ? " avoin" : e.tyyppi === "joulu" ? " joulu" : "";
-  const taynna = e.vapaana === 0;
-  const tila = taynna ? "Täynnä" : (e.vapaana != null && e.vapaana <= 5 ? `${e.vapaana} paikkaa jäljellä` : "Ilmoittaudu");
-  return `<div class="ilmo">
-    <button class="ilta${luokka}" data-id="${esc(e.id)}" ${taynna ? "disabled" : ""} aria-expanded="false">
-      <div class="pvm"><div class="d">${e.paiva}</div><div class="m">${KUUT[e.kuukausi-1]}</div></div>
-      <div><h3>${esc(e.otsikko)}</h3><div class="meta">${esc(e.viikonpaiva)} klo ${esc(e.alku)}${e.loppu ? "–"+esc(e.loppu) : ""} · ${esc(e.paikka)}</div></div>
-      <span class="tila${taynna ? " taynna" : ""}">${esc(tila)}</span>
-    </button>
-    <form class="lomake" data-id="${esc(e.id)}" novalidate>
-      <label>Nimi (etunimi riittää)<input name="nimi" autocomplete="given-name" required maxlength="100"></label>
-      <label>Sähköposti (vapaaehtoinen)<input name="email" type="email" autocomplete="email" maxlength="200"></label>
-      <label>Viesti ohjaajille (vapaaehtoinen)<textarea name="viesti" maxlength="1000"></textarea></label>
-      <label class="valinta"><input type="checkbox" name="muistutus" checked> Lähetä minulle muistutus päivää ennen (vaatii sähköpostin)</label>
-      <div class="ansa" aria-hidden="true"><label>Älä täytä<input name="sivusto" tabindex="-1" autocomplete="off"></label></div>
-      <button type="submit" class="nappi">Ilmoittaudu iltaan</button>
-      <p class="pieni">Jos annat sähköpostin, saat vahvistuksen ja voit perua paikkasi viestin linkistä. Ilman sähköpostia peruutukset: WhatsApp tai info@circling.fi.</p>
-      <div class="tulos"></div>
-    </form>
-  </div>`;
-}
-function nayta2(el, ok, teksti){ el.innerHTML = `<div class="viesti ${ok ? "ok" : "virhe"}">${esc(teksti)}</div>`; }
-async function laheta(ev){
-  ev.preventDefault();
-  const f = ev.target, tulos = f.querySelector(".tulos"), nappi = f.querySelector("button[type=submit]");
-  const data = Object.fromEntries(new FormData(f)); data.ilta = f.dataset.id; data.muistutus = f.muistutus.checked;
-  if(!data.nimi.trim()) return nayta2(tulos, false, "Kirjoita nimesi.");
-  if(data.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email.trim())) return nayta2(tulos, false, "Tarkista sähköpostiosoite.");
-  nappi.disabled = true; nappi.textContent = "Lähetetään…"; tulos.innerHTML = "";
-  try{
-    const r = await fetch(API, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify(data)});
-    const v = await r.json();
-    if(v.ok){
-      f.querySelectorAll("label, button[type=submit], .pieni").forEach(x => x.style.display = "none");
-      nayta2(tulos, true, v.jo ? "Olet jo ilmoittautunut tähän iltaan. Tervetuloa!" :
-        `Kiitos, ${data.nimi.trim().split(" ")[0]}! Ilmoittautuminen on vastaanotettu${data.email.trim() ? ", ja vahvistus on matkalla sähköpostiisi" : ""}.`);
-      if(ILLAT[data.ilta]) tulos.insertAdjacentHTML("beforeend", kalenteriNapit(ILLAT[data.ilta]));
-    } else {
-      nayta2(tulos, false, v.virhe || "Jokin meni pieleen. Yritä uudelleen.");
-      nappi.disabled = false; nappi.textContent = "Ilmoittaudu iltaan";
-    }
-  }catch(err){
-    nayta2(tulos, false, "Yhteys ei toiminut. Yritä hetken päästä uudelleen tai kirjoita: info@circling.fi");
-    nappi.disabled = false; nappi.textContent = "Ilmoittaudu iltaan";
+async function load(){
+  if (window.EMBED){ for (const k of TABS){ const a = EMBED[k] || [[]]; D[k] = objs(a[0], a.slice(1)); } return; }
+  let fails = 0;
+  const res = await Promise.all(TABS.map(n => loadTab(n).catch(() => { fails++; return []; })));
+  TABS.forEach((n, i) => D[n] = res[i]);
+  if (fails === TABS.length || !(D.Valikko||[]).length) throw new Error('nodata');
+  const script = set('Kuvaskripti');
+  if (/^https:\/\/script\.google/.test(script)){
+    try { IMG = await jsonp(script + (script.includes('?') ? '&' : '?') + 'callback={cb}'); } catch(e){ IMG = {}; }
   }
 }
-async function lataaIllat(){
-  const paikat = document.querySelectorAll(".illat-api");
-  if(!API || !paikat.length) return;
-  let illat;
-  try{ const d = await (await fetch(API)).json(); if(!d.ok) return; illat = d.illat; }
-  catch(e){ return; }  // jos haku ei onnistu, tekstit.md:n illat jäävät näkyviin
-  illat.forEach(e => ILLAT[e.id] = e);
-  paikat.forEach(p => {
-    const lista = p.dataset.max ? illat.slice(0, +p.dataset.max) : illat;
-    p.innerHTML = lista.length ? `<div class="illat">${lista.map(ilmoKortti).join("")}</div>` : `<p class="ei-iltoja">Uusia iltoja tulossa pian.</p>`;
-    p.querySelectorAll("button.ilta").forEach(b => b.addEventListener("click", () => {
-      const f = b.nextElementSibling, auki = !f.classList.contains("auki");
-      document.querySelectorAll(".lomake.auki").forEach(x => { x.classList.remove("auki"); x.previousElementSibling.setAttribute("aria-expanded","false"); });
-      if(auki){ f.classList.add("auki"); b.setAttribute("aria-expanded","true"); f.querySelector("input").focus(); }
-    }));
-    p.querySelectorAll("form.lomake").forEach(f => f.addEventListener("submit", laheta));
-  });
+
+/* ===== Apufunktiot ===== */
+const LU = () => L.toUpperCase();
+function tr(r, f){
+  if (L === 'fi') return r[f] ?? '';
+  return r[f+' '+LU()] || r[f+' '+LU()+' auto'] || r[f] || '';
+}
+function set(key, translate){
+  const r = (D.Asetukset||[]).find(x => String(x.Avain).trim() === key);
+  if (!r) return '';
+  return translate ? tr(r, 'Arvo') : String(r.Arvo ?? '').trim();
+}
+const shown = (r, main) => r[main] !== '' && r[main] != null && r.Piilota !== true;
+function img(v, w){
+  v = String(v || '').trim(); if (!v || (window.EMBED && EMBED.noImages)) return '';
+  const drive = id => `https://lh3.googleusercontent.com/d/${id}=w${w}`;
+  if (/^https?:\/\//.test(v)){
+    const m = v.match(/drive\.google\.com\/.*?(?:\/d\/|[?&]id=)([\w-]{20,})/);
+    return m ? drive(m[1]) : v;
+  }
+  const id = IMG[norm(v)];
+  return id ? drive(id) : '';
+}
+function fmtDate(d){ return L === 'en' ? `${d.getDate()} ${MONTHS.en[d.getMonth()]} ${d.getFullYear()}` : `${d.getDate()}.${d.getMonth()+1}.${d.getFullYear()}`; }
+function range(r){
+  const txt = tr(r, 'Aika'); if (txt) return txt;
+  const s = r.Alkaa, e = r['Päättyy'] instanceof Date ? r['Päättyy'] : null;
+  if (!(s instanceof Date)) return '';
+  if (!e) return fmtDate(s);
+  const lastDay = new Date(e.getFullYear(), e.getMonth()+1, 0).getDate();
+  const wholeMonths = s.getDate() === 1 && e.getDate() === lastDay;
+  if (wholeMonths && s.getFullYear() === e.getFullYear()){
+    if (s.getMonth() === 0 && e.getMonth() === 11) return String(s.getFullYear());
+    const M = MONTHS[L];
+    return (s.getMonth() === e.getMonth() ? M[s.getMonth()] : `${M[s.getMonth()]}–${M[e.getMonth()]}`) + ' ' + s.getFullYear();
+  }
+  if (L === 'en') return `${s.getDate()} ${MONTHS.en[s.getMonth()].slice(0,3)} – ${fmtDate(e)}`;
+  return s.getFullYear() === e.getFullYear() ? `${s.getDate()}.${s.getMonth()+1}.–${fmtDate(e)}` : `${fmtDate(s)}–${fmtDate(e)}`;
+}
+function status(r){
+  const today = new Date(); today.setHours(0,0,0,0);
+  const s = r.Alkaa instanceof Date ? r.Alkaa : null; if (!s) return 'past';
+  const e = r['Päättyy'] instanceof Date ? r['Päättyy'] : s;
+  return s > today ? 'up' : (e >= today ? 'now' : 'past');
+}
+const exhibitions = () => (D['Näyttelyt']||[]).filter(r => shown(r, 'Nimi'));
+const menu = () => (D.Valikko||[]).filter(r => shown(r, 'Sivu'));
+
+/* ===== Näkymät ===== */
+function exCard(r, label){
+  return `<a class="card" href="#${slug(menuName('Näyttelyt'))}"><small>${esc(label)} · ${esc(range(r))}</small>
+    <h3>${esc(r.Nimi)}</h3><span class="mute">${esc(tr(r,'Paikka'))}</span></a>`;
+}
+function vHome(){
+  const ex = exhibitions(), now = ex.filter(r => status(r) === 'now'),
+        up = ex.filter(r => status(r) === 'up').sort((a,b) => a.Alkaa - b.Alkaa);
+  const banner = img(set('Bannerikuva'), 1800);
+  const news = (D.Uutiset||[]).filter(r => shown(r, 'Otsikko')).sort((a,b) => (b['Päivämäärä']||0) - (a['Päivämäärä']||0));
+  return `<section class="band hero">
+    <div><h1>${esc(set('Nimi') || 'Hannu T. Konttinen')}</h1>
+      <div class="sub">${esc(set('Alaotsikko', true))}</div>
+      <p class="lead">${esc(set('Etusivun teksti', true))}</p>
+      ${now.map(r => exCard(r, t('now'))).join('')}${up.slice(0,1).map(r => exCard(r, t('next'))).join('')}
+    </div>
+    <div class="pic">${banner ? `<img src="${esc(banner)}" alt="">` : ''}</div>
+  </section>
+  ${news.length ? `<section class="band"><h2 style="margin-bottom:28px">${esc(menuName('Uutiset'))}</h2><div class="news">${news.map(r => {
+    const im = img(r.Kuva, 1200), d = r['Päivämäärä'] instanceof Date ? fmtDate(r['Päivämäärä']) : '';
+    return `<article><time>${esc(d)}</time><div><h3>${esc(tr(r,'Otsikko'))}</h3>${para(tr(r,'Teksti'))}${im ? `<img src="${esc(im)}" alt="" loading="lazy">` : ''}</div></article>`;
+  }).join('')}</div></section>` : ''}`;
+}
+let LIST = [];
+function vWorks(tab){
+  const prices = set('Näytä hinnat').toLowerCase() === 'kyllä';
+  LIST = (D[tab]||[]).filter(r => shown(r, 'Nimi') || (r.Kuva && r.Piilota !== true));
+  const meta = r => [r.Vuosi, tr(r,'Tekniikka'), r.Koko].filter(Boolean).map(esc).join(' · ');
+  if (!LIST.length) return `<section class="band"><h1>${esc(menuName(tab))}</h1><p class="state">${t('empty')}</p></section>`;
+  return `<section class="band"><div class="ghead"><h1>${esc(menuName(tab))}</h1><span class="mute">${LIST.length}</span></div>
+  <div class="grid">${LIST.map((r, i) => {
+    const im = img(r.Kuva, 900);
+    return `<figure class="work" data-i="${i}" tabindex="0">
+      <div class="ph">${im ? `<img src="${esc(im)}" alt="${esc(tr(r,'Nimi'))}" loading="lazy">` : `<div class="noimg">${t('noimg')}</div>`}</div>
+      <figcaption><b>${esc(tr(r,'Nimi'))}</b><span class="mute">${meta(r)}</span>
+      ${prices && r.Hinta ? `<div class="price">${esc(r.Hinta)}</div>` : ''}</figcaption></figure>`;
+  }).join('')}</div></section>`;
+}
+function vEx(){
+  const ex = exhibitions(), by = k => ex.filter(r => status(r) === k);
+  const up = by('up').sort((a,b) => a.Alkaa - b.Alkaa), now = by('now'), past = by('past').sort((a,b) => (b.Alkaa||0) - (a.Alkaa||0));
+  const row = r => `<div class="row"><div class="d">${esc(range(r))}</div><div>
+      <h3>${esc(r.Nimi)}${String(r.Tyyppi).startsWith('Yhteis') ? `<span class="tag">${t('group')}</span>` : ''}</h3>
+      <span class="mute">${esc(tr(r,'Paikka'))}</span>${tr(r,'Kuvaus') ? para(tr(r,'Kuvaus')) : ''}
+      ${/^https?:\/\//.test(r.Linkki||'') ? `<p><a href="${esc(r.Linkki)}">${t('more')} →</a></p>` : ''}</div></div>`;
+  const sec = (h, a) => a.length ? `<div class="ex"><h2>${h}</h2>${a.map(row).join('')}</div>` : '';
+  return `<section class="band"><h1 style="margin-bottom:40px">${esc(menuName('Näyttelyt'))}</h1>
+    ${sec(t('now'), now)}${sec(t('up'), up)}${sec(t('past'), past)}${ex.length ? '' : `<p class="state">${t('empty')}</p>`}</section>`;
+}
+function contactBlock(){
+  const items = [[t('home'), set('Kotiosoite')], [t('studio'), set('Ateljee')], [t('phone'), set('Puhelin')], [t('email'), set('Sähköposti')]].filter(x => x[1]);
+  const fb = set('Facebook');
+  return `<aside class="contact"><h3>${t('contact')}</h3><dl>${items.map(([k, v]) => `<dt>${k}</dt><dd>${
+    k === t('email') ? `<a href="mailto:${esc(v)}">${esc(v)}</a>` : k === t('phone') ? `<a href="tel:${esc(v.replace(/\s/g,''))}">${esc(v)}</a>` : esc(v)}</dd>`).join('')}
+    ${/^https?:\/\//.test(fb) ? `<dt>Facebook</dt><dd><a href="${esc(fb)}">facebook</a></dd>` : ''}</dl></aside>`;
+}
+function vAbout(){
+  const rows = (D.Minusta||[]).filter(r => shown(r, 'Teksti') || shown(r, 'Otsikko'));
+  return `<section class="band"><h1 style="margin-bottom:36px">${esc(menuName('Minusta'))}</h1><div class="about"><div>${rows.map(r => {
+    const im = img(r.Kuva, 1200);
+    return `<section>${r.Otsikko ? `<h2>${esc(tr(r,'Otsikko'))}</h2>` : ''}${para(tr(r,'Teksti'))}${im ? `<img src="${esc(im)}" alt="" loading="lazy">` : ''}</section>`;
+  }).join('')}</div>${contactBlock()}</div></section>`;
 }
 
-async function rakenna(){
-  let md;
-  try { md = await (await fetch("tekstit.md", {cache:"no-store"})).text(); }
-  catch(e){ document.getElementById("sisalto").innerHTML = "<p style='padding:40px 0'>Tekstejä ei saatu ladattua (tekstit.md).</p>"; return; }
-  md = md.replace(/<!--[\s\S]*?-->/g, "");
-
-  // Pilko sivuiksi
-  const sivut = [];
-  md.split(/^===\s*(.+?)\s*===\s*$/m).forEach((osa,i,arr)=>{
-    if(i%2===1){ const piilo=/^\(.*\)$/.test(osa); const nimi=osa.replace(/^\((.*)\)$/,"$1"); sivut.push({nimi, id:slug(nimi), piilo, teksti:arr[i+1]||""}); }
-  });
-
-  // Kerää illat kaikilta sivuilta
-  const nyt = new Date();
-  let kaikki = [];
-  sivut.forEach(s => s.teksti.split("\n").forEach(r => { if(/^@\s/.test(r.trim())) kaikki.push(lueIlta(r.trim())); }));
-  kaikki = kaikki.filter(e => !isNaN(e.pvm) && e.pvm >= nyt).sort((a,b)=>a.pvm-b.pvm);
-
-  const nav = document.querySelector("nav"), main = document.getElementById("sisalto");
-  sivut.forEach(s=>{
-    // Iltarivit yhdeksi listaksi
-    let t = s.teksti.replace(/(^@\s.*$\n?)+/m, "\n%%ILLAT_KAIKKI%%\n\n");
-    let html = marked.parse(t);
-    html = html.replace(/<p>\s*%%ILLAT_KAIKKI%%\s*<\/p>/, iltaLista(kaikki))
-               .replace(/<p>\s*\{\{illat\}\}\s*<\/p>/g, iltaLista(kaikki.slice(0,3), 3))
-                 .replace(/<blockquote>\s*<p>([\s\S]*?)<\/p>\s*<\/blockquote>/g, '<p class="slogan">$1</p>')
-               .replace(/<p>\s*\{\{kuva\}\}\s*<\/p>/g, KORISTE)
-               .replace(/<a href="([^"]*)">([^<]*)<\/a>\{(nappi2?)\}/g, '<a class="$3" href="$1">$2</a>');
-    if(s.id === "alatunniste"){ document.getElementById("alatunniste").innerHTML = html; return; }
-    main.insertAdjacentHTML("beforeend", `<section class="sivu" id="sivu-${s.id}">${html}</section>`);
-    if(!s.piilo) nav.insertAdjacentHTML("beforeend", `<a href="#${s.id}" data-v="${s.id}">${esc(s.nimi)}</a>`);
-  });
-  // YouTube-listat videokorteiksi
-  document.querySelectorAll("main ul").forEach(ul=>{
-    const lis=[...ul.children];
-    if(!lis.length || !lis.every(li=>/youtu\.?be/.test(li.querySelector("a")?.href||""))) return;
-    ul.classList.add("videot");
-    lis.forEach(li=>{
-      const a=li.querySelector("a"); const m=a.href.match(/(?:youtu\.be\/|v=)([\w-]{11})/);
-      if(!m) return;
-      li.className="video";
-      li.innerHTML=`<a href="https://youtu.be/${m[1]}"><span class="peukalo" style="background-image:url(https://i.ytimg.com/vi/${m[1]}/hqdefault.jpg)"><span class="play">▶</span></span><span class="vnimi">${esc(a.textContent.trim())}</span></a>`;
-    });
-  });
-  // Lista, jonka kaikki kohdat alkavat lainausmerkillä → palautekortit
-  document.querySelectorAll("main ul").forEach(ul=>{
-    const lis=[...ul.children];
-    if(lis.length && lis.every(li=>/^\s*[”"“]/.test(li.textContent))) ul.classList.add("palautteet");
-  });
-  // Omalla sivulla (esim. Netlify) video toistuu sivulla klikattaessa; Clauden esikatselussa avautuu YouTubeen
-  const UPOTA = !/claude|localhost|^$/i.test(location.hostname);
-  // Omalla sivulla ulkoiset linkit avautuvat uuteen välilehteen (esikatselussa tavallisina linkkeinä)
-  if(UPOTA) document.querySelectorAll('a[href^="http"]').forEach(a=>{a.target="_blank";a.rel="noopener"});
-  if(UPOTA) document.querySelectorAll(".video a").forEach(a=>{
-    a.addEventListener("click", ev=>{
-      ev.preventDefault();
-      const id=a.href.split("/").pop();
-      a.querySelector(".peukalo").outerHTML=`<div class="upotus"><iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1" title="${esc(a.textContent)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>`;
-      a.style.cursor="default";
-    }, {once:true});
-  });
-  // Ulkoiset linkit uuteen ikkunaan
-  
-
-  const ids = sivut.map(s=>s.id).filter(i=>i!=="alatunniste");
-  function nayta(){
-    const v = ids.includes(location.hash.slice(1)) ? location.hash.slice(1) : ids[0];
-    document.querySelectorAll(".sivu").forEach(s=>s.classList.toggle("on", s.id==="sivu-"+v));
-    nav.querySelectorAll("a").forEach(a=>a.classList.toggle("on", a.dataset.v===v));
-    nav.classList.remove("open");
-    window.scrollTo(0,0);
-  }
-  addEventListener("hashchange", nayta); nayta();
-  lataaIllat();
-  // Puhelimella: slogan ja pääotsikko yhdelle riville, mahdollisimman isona
-  function sovita(){
-    document.querySelectorAll(".sivu.on .slogan, .sivu.on h1").forEach(el=>{
-      el.style.fontSize=""; el.style.whiteSpace="";
-      if(innerWidth>760) return;
-      const tila=el.clientWidth; el.style.whiteSpace="nowrap";
-      let koko=parseFloat(getComputedStyle(el).fontSize);
-      while(el.scrollWidth>tila && koko>10){ koko-=0.5; el.style.fontSize=koko+"px"; }
-    });
-  }
-  addEventListener("hashchange", ()=>setTimeout(sovita,0));
-  addEventListener("resize", sovita);
-  if(document.fonts) document.fonts.ready.then(sovita);
-  sovita();
+/* ===== Reititys ja piirto ===== */
+function menuName(sivu){
+  const r = (D.Valikko||[]).find(x => x.Sivu === sivu);
+  if (!r) return sivu;
+  return L === 'fi' ? r.Nimi : (r['Nimi ' + LU()] || r.Nimi);
 }
-rakenna();
+function route(){
+  const h = decodeURIComponent(location.hash.slice(1));
+  const m = menu(), hit = m.find(r => slug(menuName(r.Sivu)) === h || slug(r.Sivu) === h);
+  return hit ? hit.Sivu : 'Uutiset';
+}
+function render(){
+  document.documentElement.lang = L === 'no' ? 'nb' : L;
+  const cur = route(), name = set('Nimi') || 'Hannu T. Konttinen';
+  $('#logo').textContent = name;
+  $('#nav').innerHTML = menu().map(r => `<a href="#${r.Sivu === 'Uutiset' ? '' : slug(menuName(r.Sivu))}"${r.Sivu === cur ? ' aria-current="page"' : ''}>${esc(menuName(r.Sivu))}</a>`).join('');
+  document.querySelectorAll('#lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.l === L));
+  const v = cur === 'Uutiset' ? vHome() : cur === 'Näyttelyt' ? vEx() : cur === 'Minusta' ? vAbout() : WORK_TABS.includes(cur) ? vWorks(cur) : vHome();
+  $('#main').innerHTML = v;
+  document.title = cur === 'Uutiset' ? name : `${menuName(cur)} – ${name}`;
+  $('#foot').innerHTML = `© ${new Date().getFullYear()} ${esc(name)}${set('Ateljee') ? ' · ' + esc(set('Ateljee')) : ''}`;
+  const lb = $('#lb');
+  lb.querySelector('.x').ariaLabel = t('close'); lb.querySelector('.pv').ariaLabel = t('prev'); lb.querySelector('.nx').ariaLabel = t('next2');
+}
+
+/* ===== Kuvan suurennus ===== */
+let at = -1;
+function show(i){
+  if (!LIST.length) return;
+  at = (i + LIST.length) % LIST.length;
+  const r = LIST[at], lb = $('#lb'), im = img(r.Kuva, 2000);
+  const prices = set('Näytä hinnat').toLowerCase() === 'kyllä';
+  lb.querySelector('img').src = im || ''; lb.querySelector('img').alt = tr(r,'Nimi');
+  lb.querySelector('img').style.visibility = im ? 'visible' : 'hidden';
+  lb.querySelector('.info').innerHTML = `<b>${esc(tr(r,'Nimi'))}</b><div class="mute">${[r.Vuosi, tr(r,'Tekniikka'), r.Koko].filter(Boolean).map(esc).join(' · ')}</div>${
+    tr(r,'Kuvaus') ? `<div>${esc(tr(r,'Kuvaus'))}</div>` : ''}${prices && r.Hinta ? `<div class="price">${esc(r.Hinta)}</div>` : ''}`;
+  lb.classList.add('open'); document.body.style.overflow = 'hidden';
+}
+function hide(){ $('#lb').classList.remove('open'); document.body.style.overflow = ''; at = -1; }
+document.addEventListener('click', e => {
+  const w = e.target.closest('.work'); if (w) return show(+w.dataset.i);
+  if (e.target.closest('.lb .x') || e.target.classList.contains('stage')) return hide();
+  if (e.target.closest('.lb .pv')) return show(at - 1);
+  if (e.target.closest('.lb .nx')) return show(at + 1);
+  const b = e.target.closest('#lang button');
+  if (b){ L = b.dataset.l; try { localStorage.setItem('lang', L); } catch(_){} render(); }
+});
+document.addEventListener('keydown', e => {
+  if (at >= 0){ if (e.key === 'Escape') hide(); if (e.key === 'ArrowLeft') show(at - 1); if (e.key === 'ArrowRight') show(at + 1); return; }
+  const w = e.target.closest && e.target.closest('.work'); if (w && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); show(+w.dataset.i); }
+});
+let tx = null;
+$('#lb').addEventListener('touchstart', e => tx = e.touches[0].clientX, {passive:true});
+$('#lb').addEventListener('touchend', e => { if (tx == null) return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) show(at + (dx < 0 ? 1 : -1)); tx = null; });
+window.addEventListener('hashchange', () => { hide(); render(); window.scrollTo(0, 0); });
+
+/* ===== Käynnistys ===== */
+(async () => {
+  let saved = null; try { saved = localStorage.getItem('lang'); } catch(_){}
+  L = ['no','fi','en'].includes(saved) ? saved : 'no'; // oletuskieli: norja
+  try { await load(); render(); }
+  catch(e){
+    $('#main').innerHTML = `<p class="state">${t('err')}</p>`;
+    console.warn('Sheetin lataus epäonnistui. Tarkista: Sheet jaettu "Kuka tahansa linkin saanut – katselija", ja sivu avataan verkko-osoitteesta (ei Clauden tiedostoesikatselusta).');
+  }
+})();
+}
 </script>
 </body>
 </html>
