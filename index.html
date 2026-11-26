@@ -308,8 +308,9 @@ function contactBlock(){
 }
 function vAbout(){
   const rows = (D.Minusta||[]).filter(r => shown(r, 'Teksti') || shown(r, 'Otsikko'));
-  return `<section class="band"><h1 style="margin-bottom:36px">${esc(menuName('Minusta'))}</h1><div class="about"><div>${rows.map(r => {
-    const im = img(r.Kuva, 1200);
+  return `<section class="band"><h1 style="margin-bottom:36px">${esc(menuName('Minusta'))}</h1><div class="about"><div>${rows.map((r, i) => {
+    // Minusta-kansion uusin kuva korvaa ensimmäisen osion kuvan
+    const im = (i === 0 && IMG.__minusta) ? `https://lh3.googleusercontent.com/d/${IMG.__minusta}=w1200` : img(r.Kuva, 1200);
     return `<section>${r.Otsikko ? `<h2>${esc(tr(r,'Otsikko'))}</h2>` : ''}${para(tr(r,'Teksti'))}${im ? `<img src="${esc(im)}" alt="" loading="lazy">` : ''}</section>`;
   }).join('')}</div>${contactBlock()}</div></section>`;
 }
