@@ -74,6 +74,9 @@ h3{font-size:19px;font-weight:500}
 .about section{margin-bottom:32px}
 .about h2{margin-bottom:10px}
 .contact{background:var(--panel);padding:24px;align-self:start}
+.cv{margin-top:24px;border-top:1px solid var(--ink);padding-top:28px}
+.cv h3{margin:28px 0 8px}.cv h3:first-of-type{margin-top:16px}
+.cv .row{grid-template-columns:120px minmax(0,1fr);padding:8px 0}
 .contact dl{margin:0}.contact dt{color:var(--mute);font-size:14px;margin-top:12px}.contact dd{margin:0}
 .state{padding:80px 0;color:var(--mute)}
 footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--mute);font-size:14px;margin-top:40px}
@@ -126,7 +129,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--mute);fo
 {
 /* ===== Asetukset: Sheetin tunnus ===== */
 const SHEET_ID = '1gKV4IyeExd1WeibgBH3IHfvaLde4iHgaPe_v4E2iVKg';
-const TABS = ['Asetukset','Valikko','Uutiset','Veistokset','Piirustukset','Maalaukset','Muut','Minusta','Näyttelyt'];
+const TABS = ['Asetukset','Valikko','Uutiset','Veistokset','Piirustukset','Maalaukset','Muut','Minusta','Näyttelyt','Meriitit'];
 const WORK_TABS = ['Veistokset','Piirustukset','Maalaukset','Muut'];
 
 const UI = {
@@ -140,6 +143,23 @@ const UI = {
       contact:'Contact',home:'Home',studio:'Studio',phone:'Phone',email:'Email',empty:'Nothing here yet.',
       err:'The content could not be loaded. Please try again shortly.',close:'Close',prev:'Previous',next2:'Next',noimg:'Image coming',news:'News',more:'More information'}
 };
+const CV_CATS = {
+  'Koulutus':['Koulutus','Utdanning','Education'],
+  'Apurahat':['Apurahat','Stipender','Grants'],
+  'Palkinnot':['Palkinnot','Priser','Awards'],
+  'Työskentelyjaksot ulkomailla':['Työskentelyjaksot ulkomailla','Studieopphold i utlandet','Study residencies abroad'],
+  'Yhteisnäyttelyt':['Yhteisnäyttelyt','Kollektivutstillinger','Group exhibitions'],
+  'Vuosi- ja aluenäyttelyt':['Vuosi- ja aluenäyttelyt','Års- og regionale utstillinger','Annual and regional exhibitions'],
+  'Kokoelmat':['Edustettuna kokoelmissa','Representert i samlinger','Represented in collections'],
+  'Julkiset teokset':['Julkiset teokset ja tilaustyöt','Offentlige verk og oppdrag','Public works and commissions'],
+  'Konsultointi':['Konsultointi','Konsulentoppdrag','Consulting'],
+  'Opetus':['Opetus','Undervisning','Teaching'],
+  'Muu toiminta':['Muu toiminta','Annen virksomhet','Other activities'],
+  'Jäsenyydet':['Jäsenyydet','Medlemskap','Memberships'],
+  'Luottamustoimet':['Luottamustoimet','Verv','Positions of trust'],
+  'Muut':['Muut','Annet','Other']
+};
+const CV_TITLE = {fi:'Ansioluettelo', no:'CV', en:'CV'};
 const MONTHS = {
   fi:['tammikuu','helmikuu','maaliskuu','huhtikuu','toukokuu','kesäkuu','heinäkuu','elokuu','syyskuu','lokakuu','marraskuu','joulukuu'],
   no:['januar','februar','mars','april','mai','juni','juli','august','september','oktober','november','desember'],
@@ -312,7 +332,19 @@ function vAbout(){
     // Minusta-kansion uusin kuva korvaa ensimmäisen osion kuvan
     const im = (i === 0 && IMG.__minusta) ? `https://lh3.googleusercontent.com/d/${IMG.__minusta}=w1200` : img(r.Kuva, 1200);
     return `<section>${r.Otsikko ? `<h2>${esc(tr(r,'Otsikko'))}</h2>` : ''}${para(tr(r,'Teksti'))}${im ? `<img src="${esc(im)}" alt="" loading="lazy">` : ''}</section>`;
-  }).join('')}</div>${contactBlock()}</div></section>`;
+  }).join('')}${cvBlock()}</div>${contactBlock()}</div></section>`;
+}
+function cvBlock(){
+  const rows = (D.Meriitit||[]).filter(r => shown(r, 'Teksti'));
+  if (!rows.length) return '';
+  const li = {fi:0, no:1, en:2}[L];
+  const yr = r => +((String(r.Vuosi).match(/\d{4}/g) || [0]).pop());
+  const cats = Object.keys(CV_CATS);
+  const groups = [...new Set(rows.map(r => String(r.Kategoria || 'Muut').trim()))]
+    .sort((a, b) => (cats.indexOf(a) + 99) % 99 - (cats.indexOf(b) + 99) % 99);
+  return `<div class="cv"><h2>${CV_TITLE[L]}</h2>${groups.map(g => `<h3>${esc(CV_CATS[g] ? CV_CATS[g][li] : g)}</h3>${
+    rows.filter(r => String(r.Kategoria || 'Muut').trim() === g).sort((a, b) => yr(b) - yr(a))
+      .map(r => `<div class="row"><div class="d">${esc(r.Vuosi)}</div><div>${esc(tr(r, 'Teksti'))}</div></div>`).join('')}`).join('')}</div>`;
 }
 
 /* ===== Reititys ja piirto ===== */
@@ -323,7 +355,7 @@ function menuName(sivu){
 }
 function route(){
   const h = decodeURIComponent(location.hash.slice(1));
-  const m = menu(), hit = m.find(r => slug(menuName(r.Sivu)) === h || slug(r.Sivu) === h);
+  const m = menu(), hit = m.find(r => [r.Sivu, r.Nimi, r['Nimi NO'], r['Nimi EN']].some(n => n && slug(n) === h));
   return hit ? hit.Sivu : 'Uutiset';
 }
 function render(){
