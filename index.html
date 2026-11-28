@@ -332,7 +332,7 @@ function vAbout(){
     // Minusta-kansion uusin kuva korvaa ensimmäisen osion kuvan
     const im = (i === 0 && IMG.__minusta) ? `https://lh3.googleusercontent.com/d/${IMG.__minusta}=w1200` : img(r.Kuva, 1200);
     return `<section>${r.Otsikko ? `<h2>${esc(tr(r,'Otsikko'))}</h2>` : ''}${para(tr(r,'Teksti'))}${im ? `<img src="${esc(im)}" alt="" loading="lazy">` : ''}</section>`;
-  }).join('')}${cvBlock()}</div>${contactBlock()}</div></section>`;
+  }).join('')}${!rows.length && IMG.__minusta ? `<section><img src="https://lh3.googleusercontent.com/d/${IMG.__minusta}=w1200" alt="" loading="lazy"></section>` : ''}${cvBlock()}</div>${contactBlock()}</div></section>`;
 }
 function cvBlock(){
   const rows = (D.Meriitit||[]).filter(r => shown(r, 'Teksti'));
