@@ -133,13 +133,13 @@ const TABS = ['Asetukset','Valikko','Uutiset','Veistokset','Piirustukset','Maala
 const WORK_TABS = ['Veistokset','Piirustukset','Maalaukset','Muut'];
 
 const UI = {
-  fi:{now:'Nyt esillä',up:'Tulevat näyttelyt',past:'Aiemmat näyttelyt',next:'Tuleva näyttely',group:'Yhteisnäyttely',
+  fi:{solo:'Yksityisnäyttelyt',groups:'Yhteisnäyttelyt',now:'Nyt esillä',up:'Tulevat näyttelyt',past:'Aiemmat näyttelyt',next:'Tuleva näyttely',group:'Yhteisnäyttely',
       contact:'Yhteystiedot',home:'Koti',studio:'Ateljee',phone:'Puhelin',email:'Sähköposti',empty:'Ei vielä sisältöä.',
       err:'Sisältöä ei voitu ladata. Yritä hetken päästä uudelleen.',close:'Sulje',prev:'Edellinen',next2:'Seuraava',noimg:'Kuva tulossa',news:'Ajankohtaista',more:'Lisätietoja'},
-  no:{now:'Nå',up:'Kommende utstillinger',past:'Tidligere utstillinger',next:'Kommende utstilling',group:'Kollektivutstilling',
+  no:{solo:'Separatutstillinger',groups:'Kollektivutstillinger',now:'Nå',up:'Kommende utstillinger',past:'Tidligere utstillinger',next:'Kommende utstilling',group:'Kollektivutstilling',
       contact:'Kontakt',home:'Hjem',studio:'Atelier',phone:'Telefon',email:'E-post',empty:'Ikke noe innhold ennå.',
       err:'Innholdet kunne ikke lastes. Prøv igjen om litt.',close:'Lukk',prev:'Forrige',next2:'Neste',noimg:'Bilde kommer',news:'Aktuelt',more:'Mer informasjon'},
-  en:{now:'Now showing',up:'Upcoming exhibitions',past:'Past exhibitions',next:'Upcoming exhibition',group:'Group exhibition',
+  en:{solo:'Solo exhibitions',groups:'Group exhibitions',now:'Now showing',up:'Upcoming exhibitions',past:'Past exhibitions',next:'Upcoming exhibition',group:'Group exhibition',
       contact:'Contact',home:'Home',studio:'Studio',phone:'Phone',email:'Email',empty:'Nothing here yet.',
       err:'The content could not be loaded. Please try again shortly.',close:'Close',prev:'Previous',next2:'Next',noimg:'Image coming',news:'News',more:'More information'}
 };
@@ -311,13 +311,14 @@ function vWorks(tab){
 function vEx(){
   const ex = exhibitions(), by = k => ex.filter(r => status(r) === k);
   const up = by('up').sort((a,b) => a.Alkaa - b.Alkaa), now = by('now'), past = by('past').sort((a,b) => (b.Alkaa||0) - (a.Alkaa||0));
+  const isGroup = r => String(r.Tyyppi).startsWith('Yhteis');
   const row = r => `<div class="row"><div class="d">${esc(range(r))}</div><div>
       <h3>${esc(r.Nimi)}${String(r.Tyyppi).startsWith('Yhteis') ? `<span class="tag">${t('group')}</span>` : ''}</h3>
       <span class="mute">${esc(tr(r,'Paikka'))}</span>${tr(r,'Kuvaus') ? para(tr(r,'Kuvaus')) : ''}
       ${/^https?:\/\//.test(r.Linkki||'') ? `<p><a href="${esc(r.Linkki)}">${t('more')} →</a></p>` : ''}</div></div>`;
   const sec = (h, a) => a.length ? `<div class="ex"><h2>${h}</h2>${a.map(row).join('')}</div>` : '';
   return `<section class="band"><h1 style="margin-bottom:40px">${esc(menuName('Näyttelyt'))}</h1>
-    ${sec(t('now'), now)}${sec(t('up'), up)}${sec(t('past'), past)}${ex.length ? '' : `<p class="state">${t('empty')}</p>`}</section>`;
+    ${sec(t('now'), now)}${sec(t('up'), up)}${sec(t('solo'), past.filter(r => !isGroup(r)))}${sec(t('groups'), past.filter(isGroup))}${ex.length ? '' : `<p class="state">${t('empty')}</p>`}</section>`;
 }
 function contactBlock(){
   const items = [[t('home'), set('Kotiosoite')], [t('studio'), set('Ateljee')], [t('phone'), set('Puhelin')], [t('email'), set('Sähköposti')]].filter(x => x[1]);
